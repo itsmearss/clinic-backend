@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\DoctorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,8 +14,10 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.auth.login');
+Route::middleware('guest')->group(function () {
+    Route::get('/', function () {
+        return view('pages.auth.login');
+    });
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -24,4 +26,5 @@ Route::middleware(['auth'])->group(function () {
     })->name('home');
 
     Route::resource('users', UserController::class);
+    Route::resource('doctors', DoctorController::class);
 });

@@ -22,5 +22,20 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
             'password' => Hash::make('password'),
         ]);
+
+        // seeder profile_clinics manual
+        \App\Models\ProfileClinic::create([
+            'name' => 'Klinik Sehat',
+            'address' => 'Jl. Raya Kedungwaringin No. 1',
+            'phone' => '1234567890',
+            'website' => 'https://kliniksehat.com',
+            'email' => 'annurriyadhus17@gmail.com',
+            'doctor_name' => 'Dr. Annur Riyadhus Shalihin',
+            'unique_code' => 'KLNKSHAT',
+        ]);
+
+        // seeder doctors auto
+        \App\Models\Doctor::factory(10)->create();
+
     }
 }
