@@ -39,6 +39,8 @@ class DoctorController extends Controller
             'doctor_phone' => 'required',
             'doctor_email' => 'required|email',
             'sip' => 'required',
+            'id_ihs' => 'required',
+            'nik' => 'required',
         ]);
 
         $doctor = new Doctor();
@@ -46,9 +48,12 @@ class DoctorController extends Controller
         $doctor->doctor_specialist = $request->doctor_specialist;
         $doctor->doctor_phone = $request->doctor_phone;
         $doctor->doctor_email = $request->doctor_email;
+
+        // store image
         if ($request->hasFile('photo')) {
             $doctor->photo = $request->photo;
         }
+
         if ($request->address) {
             $doctor->address = $request->address;
         }
