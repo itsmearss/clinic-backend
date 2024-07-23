@@ -37,5 +37,8 @@ class DatabaseSeeder extends Seeder
         // seeder doctors auto
         \App\Models\Doctor::factory(10)->create();
 
+        // auto generate doctor schedule
+        $this->call(DoctorScheduleSeeder::class);
+
     }
 }

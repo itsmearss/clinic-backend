@@ -27,7 +27,7 @@
             <div class="section-body">
                 <h2 class="section-title">Doctors</h2>
                 <div class="card">
-                    <form action="{{ route('doctors.store') }}" method="POST">
+                    <form action="{{ route('doctors.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card-header">
                             <h4>Input New Doctor</h4>
@@ -39,6 +39,28 @@
                                     class="form-control @error('doctor_name') is-invalid @enderror"
                                     name="doctor_name">
                                 @error('doctor_name')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>ID IHS</label>
+                                <input type="number"
+                                    class="form-control @error('id_ihs') is-invalid @enderror"
+                                    name="id_ihs">
+                                @error('id_ihs')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>NIK</label>
+                                <input type="number"
+                                    class="form-control @error('nik') is-invalid @enderror"
+                                    name="nik">
+                                @error('nik')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -74,6 +96,16 @@
                                 <label>SIP</label>
                                 <input type="number" class="form-control" name="sip">
                             </div>
+                            <div class="form-group">
+                                <label>Photo</label>
+                                <img class="img-preview img-fluid mb-3 col-sm-5">
+                                <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo" id="photo" onchange="previewImage()">
+                                @error('photo')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                         </div>
                         <div class="card-footer text-right">
                             <button class="btn btn-primary">Submit</button>
@@ -84,6 +116,23 @@
             </div>
         </section>
     </div>
+
+    <script>
+          function previewImage(){
+          const image = document.querySelector('#photo');
+          const imgPreview = document.querySelector('.img-preview');
+
+          imgPreview.style.display = 'block';
+
+          const oFReader = new FileReader();
+          oFReader.readAsDataURL(image.files[0]);
+
+          oFReader.onload = function(oFReader) {
+            imgPreview.src = oFReader.target.result;
+          }
+
+        }
+    </script>
 @endsection
 
 @push('scripts')

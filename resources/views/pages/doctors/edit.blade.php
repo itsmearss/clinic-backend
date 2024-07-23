@@ -48,6 +48,32 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label>ID IHS</label>
+                                <input type="number"
+                                    class="form-control @error('id_ihs')
+                                is-invalid
+                            @enderror"
+                                    name="id_ihs" value="{{ $doctor->id_ihs }}">
+                                @error('id_ihs')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>NIK</label>
+                                <input type="number"
+                                    class="form-control @error('nik')
+                                is-invalid
+                            @enderror"
+                                    name="nik" value="{{ $doctor->nik }}">
+                                @error('nik')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label>Doctor Specialist</label>
                                 <input type="text"
                                     class="form-control @error('doctor_specialist')
@@ -62,7 +88,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Doctor Phone</label>
-                                <input type="number" class="form-control" name="doctor_phone" value="{{ $doctor->doctor_phone }}">
+                                <input type="text" class="form-control" name="doctor_phone" value="{{ $doctor->doctor_phone }}">
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
@@ -80,6 +106,23 @@
                             <div class="form-group">
                                 <label>SIP</label>
                                 <input type="number" class="form-control" name="sip" value="{{ $doctor->sip }}">
+                            </div>
+                            <div class="form-group">
+                                <label>Photo</label>
+                                <input type="hidden" name="oldImage" value="{{ $doctor->image }}" class="rounded-1">
+                                <br>
+                                @if ($doctor->photo)
+                                    <img src="{{ asset('storage/doctors/' . $doctor->photo) }}" alt="photo" class="img-preview img-fluid mb-3 col-sm-5">
+                                @else
+                                    <img class="img-preview img-fluid mb-3 col-sm-5">
+                                @endif
+
+                                <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo" id="photo" onchange="previewImage()">
+                                @error('photo')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="card-footer text-right">

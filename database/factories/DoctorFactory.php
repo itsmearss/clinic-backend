@@ -21,7 +21,6 @@ class DoctorFactory extends Factory
             'doctor_specialist' => $this->faker->jobTitle(),
             'doctor_phone' => $this->faker->phoneNumber(),
             'doctor_email' => $this->faker->unique()->safeEmail(),
-            'photo' => $this->faker->imageUrl(),
             'address' => $this->faker->address(),
             'sip' => $this->faker->randomNumber(8),
         ];
